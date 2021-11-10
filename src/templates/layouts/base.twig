@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" style="--fg: #191818; --bg: #ffffff;">
+  <head>
+    {% include 'head.twig' %}
+  </head>
+
+  <body class="{{ classList(
+    'font-sans text-18 opacity-0',
+    is_mobile ? 'is-mobile'
+  ) }}">
+
+    <div id="root">
+
+      <main data-router-wrapper>
+        {% block content %}
+          <div data-router-view="default"></div>
+        {% endblock %}
+      </main>
+
+      {# <div class="pointer-events-none js-scroll-proxy"></div> #}
+    </div>
+
+    <script src="{{ site.theme.link }}/{{ manifest['main.js'] }}"></script>
+		{{ wp_footer }}
+	</body>
+</html>

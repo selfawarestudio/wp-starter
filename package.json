@@ -1,0 +1,42 @@
+{
+  "name": "wp-starter",
+  "version": "1.0.0",
+  "description": "A WordPress theme starter by Self Aware",
+  "scripts": {
+    "dev": "rm -rf build && rollup -c -w --environment NODE_ENV:development",
+    "build": "rm -rf build && rollup -c --environment NODE_ENV:production",
+    "symlink": "rm -rf ~/Local\\ Sites/wpstarter/app/public/wp-content/themes/wp-starter-theme && ln -s ~/Desktop/wp-starter/build ~/Local\\ Sites/wpstarter/app/public/wp-content/themes/wp-starter-theme",
+    "move": "rm -rf ~/Local\\ Sites/wpstarter/app/public/wp-content/themes/wp-starter-theme && cp -R build/. ~/Local\\ Sites/wpstarter/app/public/wp-content/themes/wp-starter-theme"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "^21.0.1",
+    "@rollup/plugin-node-resolve": "^13.0.6",
+    "@rollup/plugin-replace": "^3.0.0",
+    "autoprefixer": "^10.4.0",
+    "cssnano": "^5.0.9",
+    "postcss": "^8.3.11",
+    "postcss-focus-visible": "^6.0.1",
+    "postcss-import": "^14.0.2",
+    "rollup": "^2.59.0",
+    "rollup-plugin-browsersync": "^1.3.3",
+    "rollup-plugin-copy-watch": "^0.0.1",
+    "rollup-plugin-esbuild": "^4.6.0",
+    "rollup-plugin-output-manifest": "^2.0.0",
+    "rollup-plugin-postcss": "^4.0.1",
+    "rollup-plugin-styles": "^3.14.1",
+    "tailwindcss": "^2.2.19"
+  },
+  "dependencies": {
+    "@dogstudio/highway": "^2.2.1",
+    "choozy": "^1.0.0",
+    "focus-visible": "^5.2.0",
+    "fontfaceobserver": "^2.1.0",
+    "gsap": "^3.8.0",
+    "martha": "^3.0.4",
+    "picoapp": "^3.6.2",
+    "quicklink": "^2.2.0"
+  }
+}

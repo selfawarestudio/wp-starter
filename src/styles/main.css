@@ -1,0 +1,50 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* @font-face {
+    font-family: 'Neue Montreal';
+    src: url('fonts/PPNeueMontreal-Regular.woff2') format('woff2'),
+      url('fonts/PPNeueMontreal-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  } */
+
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+
+    transition-property: opacity, background-color, border-color, color;
+    transition-timing-function: theme('transitionTimingFunction.out-expo');
+    transition-duration: 700ms;
+  }
+
+  ::selection {
+    background-color: theme('colors.black');
+    color: theme('colors.white');
+  }
+
+  html {
+    font-size: 10px;
+  }
+
+  body {
+    font-size: 1.6rem;
+    overflow-x: hidden;
+    overscroll-behavior: none;
+  }
+
+  a,
+  button {
+    outline-color: theme('colors.black');
+  }
+}
+
+@layer components {
+}
+
+@layer utilities {
+}

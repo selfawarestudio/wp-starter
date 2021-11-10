@@ -1,0 +1,14 @@
+text-white
+text-black
+
+bg-white
+bg-black
+
+fill-white
+fill-black
+
+stroke-white
+stroke-black
+
+border-white
+border-black

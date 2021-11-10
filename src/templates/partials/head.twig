@@ -1,0 +1,42 @@
+<meta charset="utf-8">
+<meta content="ie=edge" http-equiv="x-ua-compatible">
+<meta name="google" content="notranslate">
+<meta http-equiv="Content-Language" content="en">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<title>{{ not fn('is_front_page') ? fn('wp_title', '—', true, 'right') }}{{ site.name }}</title>
+<meta content="{{ options.meta_description }}" name="description">
+
+{# Preload assets #}
+{# <link rel="preload" href="/Cambon-Demi.woff2" as="font" type="font/woff2" crossorigin> #}
+<link rel="preload" href="{{ site.theme.link }}/{{ manifest['main.css'] }}" as="style">
+<link rel="preload" href="{{ site.theme.link }}/{{ manifest['main.js'] }}" as="script">
+
+{# Tracking snippets go here #}
+
+{# Open Graph #}
+<meta content="website" property="og:type">
+<meta content="{{ site.link }}" property="og:url">
+<meta content="{{ site.name }}" property="og:site_name">
+<meta content="{{ options.meta_title }}" property="og:title">
+<meta content="{{ options.meta_description }}" property="og:description">
+<meta content="{{ Image(options.share_image).src }}" property="og:image">
+<meta content="{{ Image(options.share_image).alt }}" property="og:image:alt">
+<meta content="{{ Image(options.share_image).width }}" property="og:image:width">
+<meta content="{{ Image(options.share_image).height }}" property="og:image:height">
+
+{# Twitter Card #}
+<meta content="summary_large_image" name="twitter:card">
+<meta content="{{ site.link }}" name="twitter:url">
+<meta content="{{ options.meta_title }}" name="twitter:title">
+<meta content="{{ options.meta_description }}" name="twitter:description">
+<meta content="{{ Image(options.share_image).src }}" name="twitter:image">
+<meta content="{{ Image(options.share_image).alt }}" name="twitter:image:alt">
+
+{# Favicons #}
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>☀️</text></svg>">
+
+{# Stylesheet #}
+<link rel="stylesheet" href="{{ site.theme.link }}/{{ manifest['main.css'] }}">
+
+{{ wp_head }}
