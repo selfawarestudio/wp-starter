@@ -84,7 +84,7 @@ class WPStarter extends Timber\Site {
 		$manifest = json_decode($jsonContents, true);
 		$context['manifest'] = $manifest;
 		$context['site'] = $this;
-		$context['options'] = get_fields('option');
+		// $context['options'] = get_fields('option');
 		$context['is_mobile'] = wp_is_mobile();
 		return $context;
 	}

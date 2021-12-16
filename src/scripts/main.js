@@ -2,39 +2,32 @@ import '../styles/main.css'
 import Highway from '@dogstudio/highway'
 import * as quicklink from 'quicklink'
 import gsap from 'gsap'
-import app from './app'
-import raf from './lib/raf'
-import fonts from './lib/fonts'
 import { on, once, size, remove } from 'martha'
-import Fade from './transitions/Fade'
+import app from './app'
+import fonts from './lib/fonts'
+import Fade from './transitions/fade'
 
 class Main extends Highway.Renderer {
   onLoad() {
     quicklink.listen()
+
     on(window, 'resize', this.resize)
     on(document, 'mousemove', this.mousemove)
-    raf(app)
+
+    gsap.ticker.add(this.tick)
+
     gsap.set('[data-router-view]', { autoAlpha: 1 })
+
     fonts(app.getState().fonts).then(this.onLoadCompleted).catch(console.log)
   }
 
   onLoadCompleted = () => {
     this.onEnter()
-    const { dom } = app.getState()
-    once(dom.body, 'transitionend', this.onEnterCompleted)
-    remove(dom.body, 'opacity-0')
+    once(document.body, 'transitionend', this.onEnterCompleted)
+    remove(document.body, 'opacity-0')
   }
 
   onEnter() {
-    const page = this.properties.view.dataset.page
-    const { dom } = app.getState()
-
-    if (page) {
-      dom.body.setAttribute('data-page', page)
-    } else {
-      dom.body.removeAttribute('data-page')
-    }
-
     this.mount()
   }
 
@@ -61,8 +54,8 @@ class Main extends Highway.Renderer {
     app.emit('resize', size())
   }
 
-  mousemove = ({ clientX: mx, clientY: my }) => {
-    app.emit('mousemove', { mx, my })
+  tick = (t, dt, f) => {
+    app.emit('tick', { t, dt, f })
   }
 
   setup() {
@@ -70,7 +63,7 @@ class Main extends Highway.Renderer {
   }
 }
 
-app.router = new Highway.Core({
+let router = new Highway.Core({
   renderers: {
     default: Main,
   },
@@ -79,3 +72,7 @@ app.router = new Highway.Core({
     contextual: {},
   },
 })
+
+app.on('router:redirect', (_, { href, transition }) =>
+  router.navigate(href, transition),
+)

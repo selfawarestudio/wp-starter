@@ -1,15 +1,10 @@
 module.exports = {
-  mode: 'jit',
-  purge: {
-    mode: 'all',
-    preserveHtmlElements: true,
-    content: [
-      './src/templates/**/*.twig',
-      './src/scripts/**/*.(js|jsx)',
-      './safelist.txt',
-    ],
-  },
-  darkMode: false,
+  content: [
+    './src/templates/**/*.twig',
+    './src/scripts/**/*.(js|jsx)',
+    './safelist.txt',
+  ],
+  darkMode: 'class',
   theme: {
     fontFamily: {
       sans: ['sans-serif'],
@@ -41,7 +36,7 @@ module.exports = {
       .fill()
       .map((_, i) => i)
       .reduce((acc, val) => {
-        acc[val] = val / 100
+        acc[val] = `${val / 100}`
         return acc
       }, {}),
     spacing: new Array(351)
@@ -55,14 +50,14 @@ module.exports = {
       .fill()
       .map((_, i) => i * 5)
       .reduce((acc, val) => {
-        acc[val] = val / 100
+        acc[val] = `${val / 100}`
         return acc
       }, {}),
     zIndex: new Array(11)
       .fill()
       .map((_, i) => i)
       .reduce((acc, val) => {
-        acc[val] = val
+        acc[val] = `${val}`
         return acc
       }, {}),
     transitionTimingFunction: {
@@ -94,9 +89,6 @@ module.exports = {
     },
     stroke: theme => theme('colors'),
     fill: theme => theme('colors'),
-    extend: {},
-  },
-  variants: {
     extend: {},
   },
   plugins: [],

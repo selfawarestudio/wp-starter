@@ -1,6 +1,7 @@
 import replace from '@rollup/plugin-replace'
 import resolve from '@rollup/plugin-node-resolve'
 import commonjs from '@rollup/plugin-commonjs'
+import glslify from 'rollup-plugin-glslify'
 import esbuild from 'rollup-plugin-esbuild'
 import styles from 'rollup-plugin-styles'
 import manifest from 'rollup-plugin-output-manifest'
@@ -8,7 +9,7 @@ import copy from 'rollup-plugin-copy-watch'
 import browsersync from 'rollup-plugin-browsersync'
 
 const prod = process.env.NODE_ENV === 'production'
-const proxy = 'wpstarter.local'
+const proxy = process.env.WP_SERVER
 
 export default {
   input: 'src/scripts/main.js',
@@ -27,6 +28,7 @@ export default {
     }),
     resolve(),
     commonjs(),
+    glslify(),
     esbuild({
       minify: prod,
       jsxFactory: 'h',
@@ -38,7 +40,7 @@ export default {
       }),
     }),
     copy({
-      watch: ['src/public', 'src/templates', 'src/*.php'],
+      watch: !prod && ['src/public', 'src/templates', 'src/*.php'],
       targets: [
         { src: 'src/public/*', dest: 'build' },
         { src: 'src/templates', dest: 'build' },

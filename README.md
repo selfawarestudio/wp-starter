@@ -13,28 +13,30 @@ You'll need to install the following on your machine before getting started
 
 ### Getting Started
 
-First, create a fresh WP instance with Flywheel. Update the `proxy` variable in [rollup config file](rollup.config.js) to match your local site domain.
+First, create a fresh WP instance with Flywheel.
 
-Next, clone this repo. From the project root, install project dependencies using NPM:
+Next, clone this repo. Create a `.env` file with the following variables based on the WP instance you just created. Make sure WP_PATH is an absolute path to the root of the WordPress install.
+
+```
+WP_SERVER=wpstarter.local
+WP_PATH=/Users/mikewagz/Local Sites/wpstarter/app/public
+WP_THEME=wp-starter-theme
+```
+
+From the project root, install project dependencies using NPM:
 
 ```
 npm i
-```
-
-Run the build command to generate the `build` directory, aka the bundled theme.
-
-```
-npm run build
-```
-
-Next, create a symlink from the `build` directory within the repo to the themes directory within your local WP instance (Your paths are probably different than the example below).
-
-```
-ln -s ~/Desktop/wp-starter/build ~/Local\ Sites/wpstarter/app/public/wp-content/themes/wp-starter-theme
 ```
 
 Now you can run the development server at http://localhost:3000
 
 ```
 npm run dev
+```
+
+Or build for production
+
+```
+npm run build
 ```
