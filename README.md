@@ -15,7 +15,7 @@ You'll need to install the following on your machine before getting started
 
 First, create a fresh WP instance with Flywheel.
 
-Next, clone this repo. Create a `.env` file with the following variables based on the WP instance you just created. Make sure WP_PATH is an absolute path to the root of the WordPress install.
+Next, clone this repo. Create a `.env` file with the following variables based on the WP instance you just created. Make sure `WP_PATH` is an **absolute path** to the root of the WordPress install.
 
 ```
 WP_SERVER=wpstarter.local
