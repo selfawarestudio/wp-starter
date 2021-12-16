@@ -1,9 +1,5 @@
 module.exports = {
-  content: [
-    './src/templates/**/*.twig',
-    './src/scripts/**/*.(js|jsx)',
-    './safelist.txt',
-  ],
+  content: ['./src/templates/**/*.twig', './src/scripts/**/*.(js|jsx)'],
   darkMode: 'class',
   theme: {
     fontFamily: {
