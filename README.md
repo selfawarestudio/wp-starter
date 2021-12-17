@@ -10,6 +10,7 @@ You'll need to install the following on your machine before getting started
 
 - [Local by Flywheel](https://localwp.com/)
 - [Node](https://nodejs.org/en/) (v16.3.0)
+- [pnpm](https://pnpm.io/)
 
 ### Getting Started
 
@@ -23,20 +24,20 @@ WP_PATH=/Users/mikewagz/Local Sites/wpstarter/app/public
 WP_THEME=wp-starter-theme
 ```
 
-From the project root, install project dependencies using NPM:
+From the project root, install project dependencies using pnpm:
 
 ```
-npm i
+pnpm i
 ```
 
 Now you can run the development server at http://localhost:3000
 
 ```
-npm run dev
+pnpm dev
 ```
 
 Or build for production
 
 ```
-npm run build
+pnpm build
 ```
