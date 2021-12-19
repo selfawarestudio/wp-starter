@@ -1,6 +1,6 @@
 <?php
 
-$context = Timber::context();
-$context['posts'] = new Timber\PostQuery();
+$wpstarter_context          = Timber::context();
+$wpstarter_context['posts'] = new Timber\PostQuery();
 
-Timber::render('base.twig', $context);
+Timber::render( 'base.twig', $wpstarter_context );
