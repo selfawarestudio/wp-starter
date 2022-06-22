@@ -13,6 +13,7 @@
     "@rollup/plugin-commonjs": "^21.0.1",
     "@rollup/plugin-node-resolve": "^13.0.6",
     "@rollup/plugin-replace": "^3.0.0",
+    "@selfaware/tailwind-base": "^0.0.3",
     "autoprefixer": "^10.4.0",
     "cssnano": "^5.0.9",
     "dotenv": "^10.0.0",
@@ -20,7 +21,6 @@
     "execa": "^6.0.0",
     "ncp": "^2.0.0",
     "postcss": "^8.4.5",
-    "postcss-fluid": "^1.4.2",
     "postcss-focus-visible": "^6.0.1",
     "postcss-import": "^14.0.2",
     "rimraf": "^3.0.2",
@@ -36,12 +36,12 @@
     "tailwindcss": "^3.0.6"
   },
   "dependencies": {
-    "@dogstudio/highway": "^2.2.1",
+    "alio": "^2.0.4",
     "choozy": "^1.0.0",
     "focus-visible": "^5.2.0",
-    "fontfaceobserver": "^2.1.0",
-    "gsap": "^3.9.0",
-    "martha": "^3.1.4",
+    "fontfaceobserver": "^2.3.0",
+    "gsap": "^3.10.4",
+    "martha": "^4.1.0",
     "picoapp": "^3.6.2",
     "quicklink": "^2.2.0"
   }

@@ -1,78 +1,76 @@
-import '../styles/main.css'
-import Highway from '@dogstudio/highway'
-import * as quicklink from 'quicklink'
-import gsap from 'gsap'
-import { on, once, size, remove } from 'martha'
+import './style.css'
+import 'focus-visible'
+import { listen } from 'quicklink'
+import { add, on, remove, size } from 'martha'
+import { create } from 'alio'
 import app from './app'
-import fonts from './lib/fonts'
-import Fade from './transitions/fade'
+// import fonts from './lib/fonts'
+import transition from './lib/transition'
+import delegate from './lib/delegate'
+import scrollTo from './lib/scrollTo'
+import gsap from 'gsap'
 
-class Main extends Highway.Renderer {
-  onLoad() {
-    quicklink.listen()
+main()
 
-    on(window, 'resize', this.resize)
-    on(document, 'mousemove', this.mousemove)
+async function main() {
+  if (process.env.NODE_ENV === 'production') listen()
 
-    gsap.ticker.add(this.tick)
+  app.on('app:lock', () => add(document.body, 'overflow-hidden'))
+  app.on('app:unlock', () => remove(document.body, 'overflow-hidden'))
 
-    gsap.set('[data-router-view]', { autoAlpha: 1 })
+  on(window, 'resize', resize)
+  on(document, 'mousemove', mousemove)
+  gsap.ticker.add(tick)
 
-    fonts(app.getState().fonts).then(this.onLoadCompleted).catch(console.log)
-  }
+  delegate(document, '[href*="#"]', 'click', el => {
+    scrollTo({ href: el.getAttribute('href') })
+  })
 
-  onLoadCompleted = () => {
-    this.onEnter()
-    once(document.body, 'transitionend', this.onEnterCompleted)
-    remove(document.body, 'opacity-0')
-  }
+  // await Promise.all([
+  //   await fonts([
+  //     { family: 'ABC Helveesti' },
+  //     { family: 'Girott', options: { weight: 400 } },
+  //     { family: 'Girott', options: { weight: 700 } },
+  //     { family: 'Round' },
+  //   ]),
+  // ])
 
-  onEnter() {
-    this.mount()
-  }
+  const pjax = create({
+    transitions: {
+      default: transition,
+    },
+  })
 
-  onEnterCompleted() {
-    app.emit('enter:completed')
-  }
-
-  onLeave() {
-    this.unmount()
-  }
-
-  onLeaveCompleted() {}
-
-  mount = () => {
-    app.mount()
-    this.resize()
-  }
-
-  unmount = () => {
+  pjax.on('beforeLeave', () => {
     app.unmount()
-  }
+  })
 
-  resize = () => {
-    app.emit('resize', size())
-  }
+  pjax.on('beforeEnter', () => {
+    mount()
+  })
 
-  tick = (t, dt, f) => {
-    app.emit('tick', { t, dt, f })
-  }
-
-  setup() {
-    this.onLoad()
-  }
+  pjax.on('samePage', () => {})
 }
 
-let router = new Highway.Core({
-  renderers: {
-    default: Main,
-  },
-  transitions: {
-    default: Fade,
-    contextual: {},
-  },
-})
+function mount() {
+  app.mount()
+  resize()
 
-app.on('router:redirect', (_, { href, transition }) =>
-  router.navigate(href, transition),
-)
+  scrollTo({
+    href: window.location.href,
+    duration: 0,
+    pushState: false,
+  })
+}
+
+function resize() {
+  app.emit('resize', size())
+}
+
+function tick() {
+  app.emit('tick')
+}
+
+function mousemove({ x, y }) {
+  app.emit('mousemove', { mx: x, my: y })
+}
