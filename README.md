@@ -9,8 +9,9 @@ A WordPress theme starter powered by [Timber](https://upstatement.com/timber/), 
 You'll need to install the following on your machine before getting started
 
 - [Local by Flywheel](https://localwp.com/)
-- [Node](https://nodejs.org/en/) (v16.3.0)
+- [Node](https://nodejs.org/en/) (v16.13.0)
 - [pnpm](https://pnpm.io/)
+- [Timber](https://upstatement.com/timber/)
 
 ### Getting Started
 
